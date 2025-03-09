@@ -2,21 +2,288 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<title>Barbara Poblete</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 	</head>
 	<body>
+		<div class="background-animation">
+			<div class="gradient-blob blob-1"></div>
+			<div class="gradient-blob blob-2"></div>
+			<div class="gradient-blob blob-3"></div>
+		</div>
 		<slot />
+		<script is:inline>
+			// Theme switcher functionality
+			const theme = (() => {
+				if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+					return localStorage.getItem('theme');
+				}
+				// Default to dark theme
+				return 'dark';
+			})();
+			
+			if (theme === 'light') {
+				document.documentElement.classList.remove('dark');
+				document.documentElement.classList.add('light');
+			} else {
+				document.documentElement.classList.remove('light');
+				document.documentElement.classList.add('dark');
+			}
+
+			window.localStorage.setItem('theme', theme);
+
+			// Function to toggle theme
+			function toggleTheme() {
+				const isDark = document.documentElement.classList.contains('dark');
+				if (isDark) {
+					document.documentElement.classList.remove('dark');
+					document.documentElement.classList.add('light');
+					localStorage.setItem('theme', 'light');
+				} else {
+					document.documentElement.classList.remove('light');
+					document.documentElement.classList.add('dark');
+					localStorage.setItem('theme', 'dark');
+				}
+				
+				// Add a class to trigger the animation
+				document.documentElement.classList.add('theme-transition');
+				setTimeout(() => {
+					document.documentElement.classList.remove('theme-transition');
+				}, 500);
+			}
+
+			// Make the function available globally
+			window.toggleTheme = toggleTheme;
+		</script>
 	</body>
 </html>
 
-<style>
-	html,
+<style is:global>
+	:root {
+		/* Light theme */
+		--color-bg: #ffffff;
+		--color-bg-rgb: 255, 255, 255;
+		--color-text: #1a1a1a;
+		--color-primary: #8b5cf6;
+		--color-primary-rgb: 139, 92, 246;
+		--color-secondary: #a78bfa;
+		--color-accent: #ec4899;
+		--color-muted: #6b7280;
+		--color-border: #e5e7eb;
+		--color-card: #f9fafb;
+		--blob-color-1: rgba(139, 92, 246, 0.05);
+		--blob-color-2: rgba(236, 72, 153, 0.05);
+		--blob-color-3: rgba(59, 130, 246, 0.05);
+	}
+
+	html.dark {
+		/* Dark theme - very dark blue with the same purple and pink accents */
+		--color-bg: #0a0a1a;
+		--color-bg-rgb: 10, 10, 26;
+		--color-text: #f3f4f6;
+		--color-primary: #8b5cf6;
+		--color-primary-rgb: 139, 92, 246;
+		--color-secondary: #a78bfa;
+		--color-accent: #ec4899;
+		--color-muted: #9ca3af;
+		--color-border: #2d3748;
+		--color-card: #111827;
+		--blob-color-1: rgba(139, 92, 246, 0.1);
+		--blob-color-2: rgba(236, 72, 153, 0.1);
+		--blob-color-3: rgba(59, 130, 246, 0.1);
+	}
+
+	html {
+		font-family: 'Inter', sans-serif;
+		background-color: var(--color-bg);
+		color: var(--color-text);
+		scroll-behavior: smooth;
+		overflow-x: hidden;
+	}
+
 	body {
 		margin: 0;
+		padding: 0;
+		width: 100%;
+		min-height: 100vh;
+		transition: background-color 0.5s ease, color 0.5s ease;
+		position: relative;
+		overflow-x: hidden;
+	}
+
+	* {
+		box-sizing: border-box;
+	}
+
+	h1, h2, h3, h4, h5, h6 {
+		margin: 0;
+		font-weight: 600;
+		line-height: 1.2;
+	}
+
+	a {
+		color: var(--color-primary);
+		text-decoration: none;
+		transition: color 0.2s ease;
+	}
+
+	a:hover {
+		color: var(--color-accent);
+	}
+
+	img {
+		max-width: 100%;
+		height: auto;
+	}
+
+	.container {
+		width: 100%;
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 0 1.5rem;
+	}
+
+	.section {
+		padding: 5rem 0;
+		position: relative;
+	}
+
+	/* Animated background blobs */
+	.background-animation {
+		position: fixed;
+		top: 0;
+		left: 0;
 		width: 100%;
 		height: 100%;
+		z-index: -1;
+		overflow: hidden;
+		opacity: 0.8;
+	}
+
+	.gradient-blob {
+		position: absolute;
+		border-radius: 50%;
+		filter: blur(80px);
+		opacity: 0.7;
+		transition: background-color 0.5s ease;
+	}
+
+	.blob-1 {
+		width: 50vw;
+		height: 50vw;
+		top: -15%;
+		right: -15%;
+		background-color: var(--blob-color-1);
+		animation: blob-move-1 25s infinite alternate ease-in-out;
+	}
+
+	.blob-2 {
+		width: 40vw;
+		height: 40vw;
+		bottom: -10%;
+		left: -10%;
+		background-color: var(--blob-color-2);
+		animation: blob-move-2 30s infinite alternate ease-in-out;
+	}
+
+	.blob-3 {
+		width: 35vw;
+		height: 35vw;
+		top: 40%;
+		left: 30%;
+		background-color: var(--blob-color-3);
+		animation: blob-move-3 20s infinite alternate ease-in-out;
+	}
+
+	@keyframes blob-move-1 {
+		0% { transform: translate(0, 0) scale(1); }
+		50% { transform: translate(-5%, 5%) scale(1.1); }
+		100% { transform: translate(5%, -5%) scale(0.9); }
+	}
+
+	@keyframes blob-move-2 {
+		0% { transform: translate(0, 0) scale(1); }
+		50% { transform: translate(5%, -5%) scale(1.1); }
+		100% { transform: translate(-5%, 5%) scale(0.9); }
+	}
+
+	@keyframes blob-move-3 {
+		0% { transform: translate(0, 0) scale(1); }
+		50% { transform: translate(-8%, -2%) scale(1.2); }
+		100% { transform: translate(8%, 2%) scale(0.8); }
+	}
+
+	/* Button styles */
+	.btn {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		padding: 0.75rem 1.5rem;
+		border-radius: 0.5rem;
+		font-weight: 500;
+		transition: all 0.3s ease;
+		cursor: pointer;
+	}
+	
+	.btn-primary {
+		background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+		color: white;
+		box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+	}
+	
+	.btn-primary:hover {
+		transform: translateY(-2px);
+		box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+		color: white;
+	}
+	
+	.btn-secondary {
+		background-color: transparent;
+		color: var(--color-text);
+		border: 1px solid var(--color-border);
+	}
+	
+	.btn-secondary:hover {
+		background-color: var(--color-card);
+		transform: translateY(-2px);
+	}
+
+	/* Responsive styles */
+	@media (max-width: 1200px) {
+		.container {
+			max-width: 992px;
+		}
+	}
+
+	@media (max-width: 992px) {
+		.container {
+			max-width: 768px;
+		}
+	}
+
+	@media (max-width: 768px) {
+		.container {
+			max-width: 100%;
+			padding: 0 1rem;
+		}
+		
+		.section {
+			padding: 3rem 0;
+		}
+
+		.gradient-blob {
+			filter: blur(60px);
+		}
+	}
+
+	@media (max-width: 576px) {
+		html {
+			font-size: 14px;
+		}
 	}
 </style>
