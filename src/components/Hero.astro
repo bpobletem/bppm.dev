@@ -1,0 +1,502 @@
+<section id="hero" class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1 class="hero-title">
+          <span class="greeting">hello, i'm</span>
+          <span class="name">barbara poblete</span>
+        </h1>
+        <p class="hero-description">
+          I’m passionate about creating clean, modern interfaces that feel effortless to use. While I’m still sharpening my skills, I love designing experiences that are both beautiful and functional. Simplicity, usability, and a touch of creativity, that’s what I aim for.
+        </p>
+        <div class="hero-cta">
+        </div>
+      </div>
+      
+      <div class="hero-visual">
+        <div class="hero-shape">
+          <div class="particle-system" id="particle-canvas">
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="scroll-indicator">
+      <a href="#about">
+        <span class="mouse">
+          <span class="wheel"></span>
+        </span>
+        <span class="scroll-text">scroll down</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const particleCanvas = document.getElementById('particle-canvas');
+    if (!particleCanvas) return;
+    
+    // Create canvas element
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    particleCanvas.appendChild(canvas);
+    
+    // Set canvas size
+    const resizeCanvas = () => {
+      const rect = particleCanvas.getBoundingClientRect();
+      canvas.width = rect.width;
+      canvas.height = rect.height;
+    };
+    
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+    
+    // Particle system
+    class ParticleSystem {
+      constructor() {
+        this.particles = [];
+        this.mouseX = 0;
+        this.mouseY = 0;
+        this.mouseTrail = [];
+        this.maxTrailLength = 20;
+        this.isDrawing = false;
+        this.drawingMode = false;
+        this.colorScheme = [
+          getComputedStyle(document.documentElement).getPropertyValue('--color-primary').trim(),
+          getComputedStyle(document.documentElement).getPropertyValue('--color-accent').trim(),
+          getComputedStyle(document.documentElement).getPropertyValue('--color-secondary').trim()
+        ];
+        
+        // Create initial particles - further reduced count
+        this.createParticles(25);
+        
+        // Mouse events
+        canvas.addEventListener('mousemove', this.handleMouseMove.bind(this));
+        canvas.addEventListener('mousedown', this.handleMouseDown.bind(this));
+        canvas.addEventListener('mouseup', this.handleMouseUp.bind(this));
+        canvas.addEventListener('mouseleave', this.handleMouseLeave.bind(this));
+        canvas.addEventListener('touchstart', this.handleTouchStart.bind(this), { passive: false });
+        canvas.addEventListener('touchmove', this.handleTouchMove.bind(this), { passive: false });
+        canvas.addEventListener('touchend', this.handleTouchEnd.bind(this));
+      }
+      
+      createParticles(count) {
+        for (let i = 0; i < count; i++) {
+          this.particles.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            size: Math.random() * 3 + 1,
+            color: this.colorScheme[Math.floor(Math.random() * this.colorScheme.length)],
+            vx: Math.random() * 2 - 1,
+            vy: Math.random() * 2 - 1,
+            speed: Math.random() * 0.5 + 0.2,
+            life: Math.random() * 100 + 100,
+            maxLife: Math.random() * 100 + 100
+          });
+        }
+      }
+      
+      handleMouseMove(e) {
+        const rect = canvas.getBoundingClientRect();
+        this.mouseX = e.clientX - rect.left;
+        this.mouseY = e.clientY - rect.top;
+        
+        if (this.isDrawing) {
+          this.mouseTrail.push({ x: this.mouseX, y: this.mouseY });
+          if (this.mouseTrail.length > this.maxTrailLength) {
+            this.mouseTrail.shift();
+          }
+          
+          // Create particles along the trail
+          this.createParticlesAtPosition(this.mouseX, this.mouseY, 2);
+        }
+      }
+      
+      handleTouchStart(e) {
+        e.preventDefault();
+        const rect = canvas.getBoundingClientRect();
+        this.mouseX = e.touches[0].clientX - rect.left;
+        this.mouseY = e.touches[0].clientY - rect.top;
+        this.isDrawing = true;
+        this.mouseTrail = [{ x: this.mouseX, y: this.mouseY }];
+      }
+      
+      handleTouchMove(e) {
+        e.preventDefault();
+        if (this.isDrawing) {
+          const rect = canvas.getBoundingClientRect();
+          this.mouseX = e.touches[0].clientX - rect.left;
+          this.mouseY = e.touches[0].clientY - rect.top;
+          
+          this.mouseTrail.push({ x: this.mouseX, y: this.mouseY });
+          if (this.mouseTrail.length > this.maxTrailLength) {
+            this.mouseTrail.shift();
+          }
+          
+          // Create particles along the trail
+          this.createParticlesAtPosition(this.mouseX, this.mouseY, 2);
+        }
+      }
+      
+      handleTouchEnd() {
+        this.isDrawing = false;
+      }
+      
+      handleMouseDown() {
+        this.isDrawing = true;
+        this.mouseTrail = [{ x: this.mouseX, y: this.mouseY }];
+      }
+      
+      handleMouseUp() {
+        this.isDrawing = false;
+      }
+      
+      handleMouseLeave() {
+        this.isDrawing = false;
+      }
+      
+      createParticlesAtPosition(x, y, count) {
+        for (let i = 0; i < count; i++) {
+          this.particles.push({
+            x: x + (Math.random() * 6 - 3),
+            y: y + (Math.random() * 6 - 3),
+            size: Math.random() * 3 + 2,
+            color: this.colorScheme[Math.floor(Math.random() * this.colorScheme.length)],
+            vx: Math.random() * 1 - 0.5,
+            vy: Math.random() * 1 - 0.5,
+            speed: Math.random() * 0.8 + 0.3,
+            life: Math.random() * 400 + 300,
+            maxLife: Math.random() * 400 + 300,
+            isDrawn: true
+          });
+        }
+      }
+      
+      update() {
+        // Clear canvas
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        // Count non-drawn particles
+        const ambientParticles = this.particles.filter(p => !p.isDrawn).length;
+        
+        // Update and draw particles
+        for (let i = 0; i < this.particles.length; i++) {
+          const p = this.particles[i];
+          
+          // Update position
+          if (!this.isDrawing) {
+            // Calculate distance to mouse
+            const dx = this.mouseX - p.x;
+            const dy = this.mouseY - p.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            
+            // Move towards mouse if close enough
+            if (distance < 150) {
+              const angle = Math.atan2(dy, dx);
+              const force = (1 - distance / 150) * 0.2;
+              p.vx += Math.cos(angle) * force;
+              p.vy += Math.sin(angle) * force;
+            }
+          }
+          
+          // Apply velocity - even slower movement for drawn particles
+          if (p.isDrawn) {
+            p.x += p.vx * p.speed * 0.2;
+            p.y += p.vy * p.speed * 0.2;
+          } else {
+            p.x += p.vx * p.speed;
+            p.y += p.vy * p.speed;
+          }
+          
+          // Boundary check with bounce
+          if (p.x < 0 || p.x > canvas.width) {
+            p.vx *= -1;
+            p.x = Math.max(0, Math.min(p.x, canvas.width));
+          }
+          if (p.y < 0 || p.y > canvas.height) {
+            p.vy *= -1;
+            p.y = Math.max(0, Math.min(p.y, canvas.height));
+          }
+          
+          // Reduce life
+          p.life--;
+          
+          // Draw particle
+          const opacity = p.life / p.maxLife;
+          ctx.globalAlpha = opacity;
+          ctx.fillStyle = p.color;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          ctx.fill();
+          
+          // Remove dead particles
+          if (p.life <= 0) {
+            this.particles.splice(i, 1);
+            i--;
+            
+            // Create new particle to replace only if it's not a drawn particle
+            // or if we have too few ambient particles
+            if (!p.isDrawn && ambientParticles < 25) {
+              this.createParticles(1);
+            }
+          }
+        }
+        
+        // Draw mouse trail with higher opacity
+        if (this.isDrawing && this.mouseTrail.length > 1) {
+          ctx.globalAlpha = 0.6;
+          ctx.strokeStyle = this.colorScheme[0];
+          ctx.lineWidth = 3;
+          ctx.beginPath();
+          ctx.moveTo(this.mouseTrail[0].x, this.mouseTrail[0].y);
+          
+          for (let i = 1; i < this.mouseTrail.length; i++) {
+            ctx.lineTo(this.mouseTrail[i].x, this.mouseTrail[i].y);
+          }
+          
+          ctx.stroke();
+        }
+        
+        // Reset alpha
+        ctx.globalAlpha = 1;
+        
+        // Animation loop
+        requestAnimationFrame(this.update.bind(this));
+      }
+    }
+    
+    // Initialize and start animation
+    const particleSystem = new ParticleSystem();
+    particleSystem.update();
+  });
+</script>
+
+<style>
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding-top: 70px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .hero::before {
+    display: none;
+  }
+  
+  .hero-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: center;
+  }
+  
+  .hero-text {
+    max-width: 600px;
+  }
+  
+  .hero-title {
+    font-size: 3.5rem;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    text-transform: lowercase;
+  }
+  
+  .greeting {
+    font-size: 1.75rem;
+    font-weight: 400;
+    color: var(--color-muted);
+    margin-bottom: 0.5rem;
+  }
+  
+  .name {
+    background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 700;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.5rem;
+    color: var(--color-muted);
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+    text-transform: lowercase;
+  }
+  
+  .hero-description {
+    font-size: 1.125rem;
+    line-height: 1.6;
+    color: var(--color-muted);
+    margin-bottom: 2rem;
+    max-width: 600px;
+  }
+  
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  
+  .hero-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .hero-shape {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    aspect-ratio: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1rem;
+    background: var(--color-card);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.5s ease;
+  }
+  
+  .hero-shape:hover {
+    transform: scale(1.02);
+  }
+  
+  .hero-shape::before {
+    display: none;
+  }
+  
+  .particle-system {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    cursor: crosshair;
+  }
+  
+  .particle-system canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+  
+  .scroll-indicator {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .scroll-indicator a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--color-muted);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .scroll-indicator a:hover {
+    color: var(--color-primary);
+  }
+  
+  .mouse {
+    width: 26px;
+    height: 40px;
+    border: 2px solid currentColor;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    padding-top: 8px;
+  }
+  
+  .wheel {
+    width: 4px;
+    height: 8px;
+    background-color: currentColor;
+    border-radius: 2px;
+    animation: scroll 1.5s infinite;
+  }
+  
+  .scroll-text {
+    display: block;
+    text-align: center;
+    margin-top: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--color-muted);
+    letter-spacing: 1px;
+    text-transform: lowercase;
+  }
+  
+  @keyframes scroll {
+    0% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(12px);
+      opacity: 0;
+    }
+  }
+  
+  @media (max-width: 992px) {
+    .hero-content {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+    
+    .hero-text {
+      margin: 0 auto;
+      order: 1;
+    }
+    
+    .hero-visual {
+      order: 0;
+      margin-bottom: 2rem;
+    }
+    
+    .greeting {
+      padding-left: 0;
+    }
+    
+    .greeting::before {
+      display: none;
+    }
+    
+    .hero-cta {
+      justify-content: center;
+    }
+    
+    .hero-shape {
+      max-width: 400px;
+      margin: 0 auto;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .hero {
+      padding-top: 80px;
+    }
+    
+    .scroll-indicator {
+      display: none;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .hero-shape {
+      max-width: 300px;
+    }
+  }
+</style> 

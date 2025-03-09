@@ -1,0 +1,337 @@
+<section id="skills" class="section skills">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">my skills</h2>
+      <div class="section-line"></div>
+    </div>
+    
+    <div class="skills-container">
+      <div class="skills-tabs">
+        <button class="tab-btn active" data-target="frontend"><span>frontend</span></button>
+        <button class="tab-btn" data-target="backend"><span>backend</span></button>
+        <button class="tab-btn" data-target="tools"><span>tools & others</span></button>
+      </div>
+      
+      <div class="skills-content">
+        <div class="skills-tab-content active" id="frontend">
+          <div class="skills-grid">
+            <div class="skill-card">
+              <h4>html & css</h4>
+            </div>
+            
+            <div class="skill-card">
+              <h4>javascript</h4>
+            </div>
+            
+            <div class="skill-card">
+              <h4>vue</h4>
+            </div>
+            
+            <div class="skill-card">
+              <h4>typescript</h4>
+            </div>
+            
+            <div class="skill-card">
+              <h4>tailwind</h4>
+            </div>
+            
+            <div class="skill-card">
+              <h4>astro</h4>
+            </div>
+
+            <div class="skill-card">
+              <h4>react native</h4>
+            </div>
+          </div>
+        </div>
+        
+        <div class="skills-tab-content" id="backend">
+          <div class="skills-grid">
+            <div class="skill-card">
+              <h4>node.js</h4>
+            </div>
+            
+            <div class="skill-card">
+              <h4>python</h4>
+            </div>
+
+            <div class="skill-card">
+              <h4>ruby</h4>
+            </div>
+            
+            <div class="skill-card">
+              <h4>sql</h4>
+            </div>
+
+            <div class="skill-card">
+              <h4>pl/sql</h4>
+            </div>
+          </div>
+        </div>
+        
+        <div class="skills-tab-content" id="tools">
+          <div class="skills-grid">
+            <div class="skill-card">
+              <h4>git & github</h4>
+            </div>
+            
+            <div class="skill-card">
+              <h4>ui/ux design</h4>
+            </div>
+            
+            <div class="skill-card">
+              <h4>figma</h4>
+            </div>
+
+            <div class="skill-card">
+              <h4>aws</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const tabButtons = document.querySelectorAll('.tab-btn');
+    const tabContents = document.querySelectorAll('.skills-tab-content');
+    
+    // Tab switching functionality
+    tabButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        // Remove active class from all buttons and contents
+        tabButtons.forEach(btn => btn.classList.remove('active'));
+        tabContents.forEach(content => content.classList.remove('active'));
+        
+        // Add active class to clicked button and corresponding content
+        button.classList.add('active');
+        const target = button.getAttribute('data-target');
+        if (target) {
+          const targetElement = document.getElementById(target);
+          if (targetElement) {
+            targetElement.classList.add('active');
+          }
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  .skills {
+    background-color: var(--color-bg);
+    position: relative;
+    z-index: 1;
+  }
+  
+  .section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  
+  .section-title {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    position: relative;
+    display: inline-block;
+    background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-transform: lowercase;
+  }
+  
+  .section-line {
+    display: none;
+  }
+  
+  .skills-container {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  
+  .skills-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+  }
+  
+  .tab-btn {
+    position: relative;
+    padding: 0.75rem 1.5rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--color-muted);
+    border-radius: 2rem;
+    font-weight: 500;
+    color: var(--color-muted);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: lowercase;
+  }
+  
+  .tab-btn span {
+    position: relative;
+    z-index: 2;
+  }
+  
+  .tab-btn:not(.active):hover {
+    transform: translateY(-2px);
+  }
+  
+  .tab-btn:not(.active):hover span {
+    background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .tab-btn:not(.active):hover {
+    border-color: transparent;
+  }
+  
+  .tab-btn:not(.active):hover::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    margin: -1px;
+    border-radius: inherit;
+    background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    -webkit-mask-composite: xor;
+    padding: 1px;
+  }
+  
+  .tab-btn.active {
+    position: relative;
+    background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+    color: white;
+    box-shadow: 0 0 10px rgba(var(--color-primary-rgb), 0.4);
+    border: none;
+    z-index: 2;
+  }
+  
+  .tab-btn.active span {
+    position: relative;
+    z-index: 2;
+  }
+  
+  .tab-btn.active::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    bottom: -2px;
+    left: -2px;
+    z-index: 0;
+    border-radius: inherit;
+    background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+  }
+  
+  .skills-tab-content {
+    display: none;
+    animation: fadeIn 0.5s ease forwards;
+  }
+  
+  .skills-tab-content.active {
+    display: block;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .skill-card {
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 100px;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+  }
+  
+  .skill-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    opacity: 0.15;
+    mix-blend-mode: overlay;
+    pointer-events: none;
+  }
+  
+  .skill-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--color-primary);
+  }
+  
+  .skill-card h4 {
+    font-size: 1.1rem;
+    margin: 0;
+    color: var(--color-text);
+    text-transform: lowercase;
+    position: relative;
+    z-index: 2;
+  }
+  
+  @media (max-width: 768px) {
+    .skills-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+    
+    .tab-btn {
+      padding: 0.6rem 1.2rem;
+      font-size: 0.9rem;
+    }
+    
+    .skill-card {
+      padding: 1.25rem;
+      min-height: 80px;
+    }
+    
+    .skill-card h4 {
+      font-size: 1rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .skills-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style> 
+</style> 

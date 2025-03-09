@@ -1,0 +1,134 @@
+---
+import SocialButton from './SocialButton.astro';
+---
+
+<footer class="footer">
+  <div class="footer-shape"></div>
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-logo">
+        <a href="/">bppm.dev</a>
+      </div>
+      
+      <div class="footer-social">
+        <SocialButton href="https://github.com/bpobletem" label="GitHub">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+        </SocialButton>
+        
+        <SocialButton href="https://linkedin.com/in/bpobletem" label="LinkedIn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+        </SocialButton>
+        
+        <SocialButton href="mailto:bpobletem@icloud.com" label="Email" target="_self" rel="">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+        </SocialButton>
+      </div>
+    </div>
+    
+    <div class="footer-divider"></div>
+    
+    <div class="footer-bottom">
+      <div class="footer-copyright">
+        <p>designed, developed & shipped by me</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // No longer needed since we removed the year
+</script>
+
+<style>
+  .footer {
+    background-color: var(--color-card);
+    padding: 5rem 0 2rem;
+    border-top: 1px solid var(--color-border);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .footer-shape {
+    position: absolute;
+    top: -150px;
+    right: -150px;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+    opacity: 0.05;
+    z-index: 0;
+  }
+  
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .footer-logo a {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--color-text);
+    text-decoration: none;
+    background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .footer-social {
+    display: flex;
+    gap: 1.5rem;
+  }
+  
+  .footer-divider {
+    height: 1px;
+    background: linear-gradient(90deg, 
+      transparent 0%, 
+      var(--color-border) 15%, 
+      var(--color-border) 85%, 
+      transparent 100%
+    );
+    margin-bottom: 2rem;
+  }
+  
+  .footer-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .footer-copyright {
+    color: var(--color-muted);
+    font-size: 0.875rem;
+    text-align: center;
+  }
+  
+  @media (max-width: 768px) {
+    .footer {
+      padding: 4rem 0 2rem;
+    }
+    
+    .footer-content {
+      flex-direction: column;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    
+    .footer-social {
+      justify-content: center;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .footer {
+      padding: 3rem 0 1.5rem;
+    }
+  }
+</style> 

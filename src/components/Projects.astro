@@ -1,0 +1,178 @@
+<section id="projects" class="section projects">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">my projects</h2>
+      <div class="section-line"></div>
+    </div>
+    
+    <div class="under-construction">
+      <div class="construction-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 12l-8.5 8.5c-.83.83-2.17.83-3 0 0 0 0 0 0 0a2.12 2.12 0 0 1 0-3L12 9"></path><path d="M17.64 15L22 10.64"></path><path d="m20.91 11.7-1.25-1.25c-.6-.6-.93-1.4-.93-2.25v-.86L16.01 4.6a5.56 5.56 0 0 0-3.94-1.64H9l.92.82A6.18 6.18 0 0 1 12 8.4v1.56l2 2h2.47l2.26 1.91"></path></svg>
+      </div>
+      <h3>under construction</h3>
+      <p>This section is currently being built. Go check github meanwhile!</p>
+      <div class="github-link">
+        <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" aria-label="Visit my GitHub profile">
+          <svg class="github-icon" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+          <svg class="external-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .projects {
+    background-color: var(--color-bg);
+    position: relative;
+    z-index: 1;
+  }
+  
+  .section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  
+  .section-title {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    position: relative;
+    display: inline-block;
+    background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-transform: lowercase;
+  }
+  
+  .section-line {
+    display: none;
+  }
+  
+  .under-construction {
+    text-align: center;
+    padding: 3rem 2rem;
+    background-color: var(--color-card);
+    border-radius: 1rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .construction-icon {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+    color: white;
+  }
+  
+  .construction-icon svg {
+    width: 64px;
+    height: 64px;
+  }
+  
+  .under-construction h3 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--color-text);
+    text-align: center;
+    text-transform: lowercase;
+  }
+  
+  .under-construction p {
+    color: var(--color-muted);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+  
+  .github-link {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .github-link a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+    color: white;
+    border-radius: 50%;
+    transition: box-shadow 0.3s ease;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+  }
+  
+  .github-link a:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  }
+  
+  .github-icon {
+    position: absolute;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+  
+  .external-icon {
+    position: absolute;
+    opacity: 0;
+    transform: scale(0);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+  
+  .github-link a:hover .github-icon {
+    opacity: 0;
+    transform: scale(0);
+  }
+  
+  .github-link a:hover .external-icon {
+    opacity: 1;
+    transform: scale(1);
+  }
+  
+  @media (max-width: 768px) {
+    .section-header {
+      margin-bottom: 3rem;
+    }
+    
+    .under-construction {
+      padding: 3rem 1.5rem;
+    }
+    
+    .construction-icon {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 2rem;
+    }
+    
+    .construction-icon svg {
+      width: 40px;
+      height: 40px;
+    }
+    
+    .under-construction h3 {
+      font-size: 1.75rem;
+    }
+    
+    .under-construction p {
+      font-size: 1rem;
+    }
+    
+    .github-link a {
+      width: 50px;
+      height: 50px;
+    }
+    
+    .github-icon, .external-icon {
+      width: 24px;
+      height: 24px;
+    }
+  }
+</style> 
