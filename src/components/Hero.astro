@@ -16,6 +16,7 @@
       <div class="hero-visual">
         <div class="hero-shape">
           <div class="particle-system" id="particle-canvas">
+            <div class="canvas-hint">Try drawing here!</div>
           </div>
         </div>
       </div>
@@ -67,7 +68,15 @@
           getComputedStyle(document.documentElement).getPropertyValue('--color-accent').trim(),
           getComputedStyle(document.documentElement).getPropertyValue('--color-secondary').trim()
         ];
+        const hint = document.querySelector('.canvas-hint');
+  
+        const hideHint = () => {
+          hint?.classList.add('hide');
+        };
         
+        canvas.addEventListener('mousedown', hideHint, { once: true });
+        canvas.addEventListener('touchstart', hideHint, { once: true });
+          
         // Create initial particles - further reduced count
         this.createParticles(25);
         
@@ -385,6 +394,27 @@
     height: 100%;
     display: block;
   }
+
+  .canvas-hint {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(var(--color-card-rgb), 0.9);
+  color: var(--color-primary);
+  padding: 0.75rem 1.5rem;
+  border-radius: 2rem;
+  font-size: 1rem;
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+  z-index: 2;
+  border: 2px solid var(--color-primary);
+}
+
+.canvas-hint.hide {
+  opacity: 0;
+}
   
   .scroll-indicator {
     position: absolute;
