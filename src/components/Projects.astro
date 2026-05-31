@@ -1,22 +1,96 @@
+---
+// To add a real screenshot, drop the image in /public (e.g. /public/projects/interviewlab.png)
+// and set `image: '/projects/interviewlab.png'` on the matching project below.
+const projects = [
+  {
+    title: 'interviewlab',
+    description:
+      'An AI-powered mock interview platform with a conversational voice agent. It evaluates candidates with LLM-based analysis and AI speech, then generates structured feedback and analytics dashboards.',
+    tech: ['next.js', 'supabase', 'elevenlabs', 'gemini', 'tailwind'],
+    link: 'https://interview-lab-rho.vercel.app',
+    linkLabel: 'visit site',
+    icon: 'mic',
+    image: null,
+  },
+  {
+    title: 'docgen',
+    description:
+      'A document automation tool built for Poblete Martínez Abogados. It generates lawsuits and promissory notes in bulk from an Excel spreadsheet and a Word template, making the process faster and far less error-prone.',
+    tech: ['flask', 'python', 'docker', 'self-hosted'],
+    link: 'https://documentos.pobletemartinez.cl/',
+    linkLabel: 'visit site',
+    icon: 'file',
+    image: null,
+  },
+  {
+    title: 'macrotrack',
+    description:
+      'A macro and calorie tracker I built because no existing app did exactly what I needed to improve my own nutrition. Self-hosted on a personal server, deployed with Coolify and Pangolin.',
+    tech: ['django', 'vue', 'postgresql', 'coolify', 'self-hosted'],
+    link: 'https://macrotrack.bppm.dev/',
+    linkLabel: 'visit site',
+    icon: 'activity',
+    image: null,
+  },
+  {
+    title: 'poblete martínez',
+    description:
+      'The web presence for an independent law firm, including production web and backend tools that automate their legal workflows. Self-hosted alongside DocGen on a personal server.',
+    tech: ['astro', 'tailwind', 'flask', 'docker'],
+    link: 'https://pobletemartinez.cl',
+    linkLabel: 'visit site',
+    icon: 'scale',
+    image: null,
+  },
+];
+
+const icons = {
+  mic: '<path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line>',
+  file: '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline>',
+  activity: '<polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>',
+  scale: '<path d="M12 3v18"></path><path d="M5 7h14"></path><path d="m7 7-3 7a3 3 0 0 0 6 0z"></path><path d="m17 7-3 7a3 3 0 0 0 6 0z"></path><path d="M7 21h10"></path>',
+};
+---
+
 <section id="projects" class="section projects">
   <div class="container">
     <div class="section-header">
       <h2 class="section-title">my projects</h2>
       <div class="section-line"></div>
     </div>
-    
-    <div class="under-construction">
-      <div class="construction-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 12l-8.5 8.5c-.83.83-2.17.83-3 0 0 0 0 0 0 0a2.12 2.12 0 0 1 0-3L12 9"></path><path d="M17.64 15L22 10.64"></path><path d="m20.91 11.7-1.25-1.25c-.6-.6-.93-1.4-.93-2.25v-.86L16.01 4.6a5.56 5.56 0 0 0-3.94-1.64H9l.92.82A6.18 6.18 0 0 1 12 8.4v1.56l2 2h2.47l2.26 1.91"></path></svg>
-      </div>
-      <h3>under construction</h3>
-      <p>This section is currently being built. Go check github meanwhile!</p>
-      <div class="github-link">
-        <a href="https://github.com/bpobletem" target="_blank" rel="noopener noreferrer" aria-label="Visit my GitHub profile">
-          <svg class="github-icon" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-          <svg class="external-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-        </a>
-      </div>
+
+    <div class="projects-grid">
+      {projects.map((project) => (
+        <article class="project-card">
+          <div class="project-image">
+            {project.image ? (
+              <img src={project.image} alt={`${project.title} screenshot`} loading="lazy" />
+            ) : (
+              <div class="project-placeholder">
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" set:html={icons[project.icon]}></svg>
+              </div>
+            )}
+          </div>
+
+          <div class="project-body">
+            <h3 class="project-title">{project.title}</h3>
+            <p class="project-description">{project.description}</p>
+
+            <ul class="project-tech">
+              {project.tech.map((t) => (
+                <li>{t}</li>
+              ))}
+            </ul>
+
+            {project.link && (
+              <a class="project-link" href={project.link} target="_blank" rel="noopener noreferrer" aria-label={`Visit ${project.title}`}>
+                <span>{project.linkLabel}</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+              </a>
+            )}
+          </div>
+        </article>
+      ))}
     </div>
   </div>
 </section>
@@ -27,12 +101,12 @@
     position: relative;
     z-index: 1;
   }
-  
+
   .section-header {
     text-align: center;
     margin-bottom: 3rem;
   }
-  
+
   .section-title {
     font-size: 2.5rem;
     margin-bottom: 1rem;
@@ -44,135 +118,151 @@
     background-clip: text;
     text-transform: lowercase;
   }
-  
+
   .section-line {
     display: none;
   }
-  
-  .under-construction {
-    text-align: center;
-    padding: 3rem 2rem;
-    background-color: var(--color-card);
-    border-radius: 1rem;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    max-width: 600px;
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    max-width: 1000px;
     margin: 0 auto;
   }
-  
-  .construction-icon {
-    width: 100px;
-    height: 100px;
-    margin: 0 auto 2rem;
+
+  .project-card {
+    display: flex;
+    flex-direction: column;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .project-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--color-primary);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  }
+
+  .project-image {
+    aspect-ratio: 16 / 9;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .project-placeholder {
+    width: 100%;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
     color: white;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+    position: relative;
+    overflow: hidden;
   }
-  
-  .construction-icon svg {
-    width: 64px;
-    height: 64px;
+
+  .project-placeholder::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    opacity: 0.15;
+    mix-blend-mode: overlay;
+    pointer-events: none;
   }
-  
-  .under-construction h3 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
+
+  .project-placeholder svg {
+    width: 48px;
+    height: 48px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .project-body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 1.5rem;
+  }
+
+  .project-title {
+    font-size: 1.4rem;
+    margin-bottom: 0.75rem;
     color: var(--color-text);
-    text-align: center;
     text-transform: lowercase;
   }
-  
-  .under-construction p {
+
+  .project-description {
     color: var(--color-muted);
-    font-size: 1.1rem;
     line-height: 1.6;
-    margin-bottom: 2rem;
-    text-align: center;
+    margin: 0 0 1.25rem;
   }
-  
-  .github-link {
+
+  .project-tech {
     display: flex;
-    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.5rem;
   }
-  
-  .github-link a {
-    display: flex;
+
+  .project-tech li {
+    font-size: 0.8rem;
+    padding: 0.3rem 0.75rem;
+    border-radius: 2rem;
+    color: var(--color-muted);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--color-border);
+    text-transform: lowercase;
+  }
+
+  .project-link {
+    display: inline-flex;
     align-items: center;
-    justify-content: center;
-    position: relative;
-    width: 60px;
-    height: 60px;
-    background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+    gap: 0.5rem;
+    margin-top: auto;
+    align-self: flex-start;
+    padding: 0.6rem 1.25rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
     color: white;
-    border-radius: 50%;
-    transition: box-shadow 0.3s ease;
+    background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
-  
-  .github-link a:hover {
+
+  .project-link:hover {
+    color: white;
+    transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
   }
-  
-  .github-icon {
-    position: absolute;
-    transition: transform 0.3s ease, opacity 0.3s ease;
+
+  .project-link span {
+    text-transform: lowercase;
   }
-  
-  .external-icon {
-    position: absolute;
-    opacity: 0;
-    transform: scale(0);
-    transition: transform 0.3s ease, opacity 0.3s ease;
-  }
-  
-  .github-link a:hover .github-icon {
-    opacity: 0;
-    transform: scale(0);
-  }
-  
-  .github-link a:hover .external-icon {
-    opacity: 1;
-    transform: scale(1);
-  }
-  
+
   @media (max-width: 768px) {
-    .section-header {
-      margin-bottom: 3rem;
+    .projects-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
     }
-    
-    .under-construction {
-      padding: 3rem 1.5rem;
-    }
-    
-    .construction-icon {
-      width: 80px;
-      height: 80px;
-      margin-bottom: 2rem;
-    }
-    
-    .construction-icon svg {
-      width: 40px;
-      height: 40px;
-    }
-    
-    .under-construction h3 {
-      font-size: 1.75rem;
-    }
-    
-    .under-construction p {
-      font-size: 1rem;
-    }
-    
-    .github-link a {
-      width: 50px;
-      height: 50px;
-    }
-    
-    .github-icon, .external-icon {
-      width: 24px;
-      height: 24px;
+
+    .project-title {
+      font-size: 1.25rem;
     }
   }
-</style> 
+</style>
