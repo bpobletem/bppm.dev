@@ -1,25 +1,35 @@
 ---
 import ThemeToggle from './ThemeToggle.astro';
+import { useTranslations, type Lang } from '../i18n/translations';
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = 'en' } = Astro.props;
+const t = useTranslations(lang);
+const homeHref = lang === 'es' ? '/es' : '/';
 ---
 
 <header class="header">
   <div class="container">
     <div class="header-content">
       <div class="logo">
-        <a href="/">bppm.dev</a>
+        <a href={homeHref}>bppm.dev</a>
       </div>
-      
+
       <nav class="nav-desktop">
         <ul>
-          <li><a href="#about">about</a></li>
-          <li><a href="#experience">experience</a></li>
-          <li><a href="#skills">skills</a></li>
-          <li><a href="#projects">projects</a></li>
-          <li><a href="#contact">contact</a></li>
+          <li><a href="#about">{t.nav.about}</a></li>
+          <li><a href="#experience">{t.nav.experience}</a></li>
+          <li><a href="#skills">{t.nav.skills}</a></li>
+          <li><a href="#projects">{t.nav.projects}</a></li>
+          <li><a href="#contact">{t.nav.contact}</a></li>
         </ul>
       </nav>
-      
+
       <div class="header-actions">
+        <a class="lang-toggle" href={t.langToggle.href} aria-label={t.langToggle.aria}>{t.langToggle.label}</a>
         <ThemeToggle />
         
         <button id="mobile-menu-toggle" aria-label="Toggle mobile menu">
@@ -34,11 +44,12 @@ import ThemeToggle from './ThemeToggle.astro';
   <div class="mobile-menu">
     <nav>
       <ul>
-        <li><a href="#about">about</a></li>
-        <li><a href="#experience">experience</a></li>
-        <li><a href="#skills">skills</a></li>
-        <li><a href="#projects">projects</a></li>
-        <li><a href="#contact">contact</a></li>
+        <li><a href="#about">{t.nav.about}</a></li>
+        <li><a href="#experience">{t.nav.experience}</a></li>
+        <li><a href="#skills">{t.nav.skills}</a></li>
+        <li><a href="#projects">{t.nav.projects}</a></li>
+        <li><a href="#contact">{t.nav.contact}</a></li>
+        <li><a href={t.langToggle.href}>{t.langToggle.aria}</a></li>
       </ul>
     </nav>
   </div>
@@ -136,6 +147,38 @@ import ThemeToggle from './ThemeToggle.astro';
     display: flex;
     align-items: center;
     gap: 1rem;
+  }
+
+  .lang-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 45px;
+    height: 45px;
+    padding: 0 0.75rem;
+    border-radius: 2rem;
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    color: var(--color-text);
+    background-color: var(--color-bg);
+    border: 1px solid var(--color-border);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+  }
+
+  .lang-toggle:hover {
+    color: white;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+    border-color: transparent;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  @media (max-width: 576px) {
+    .lang-toggle {
+      min-width: 40px;
+      height: 40px;
+    }
   }
   
   #mobile-menu-toggle {

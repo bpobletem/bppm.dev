@@ -1,33 +1,44 @@
+---
+import { useTranslations, type Lang } from '../i18n/translations';
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = 'en' } = Astro.props;
+const t = useTranslations(lang).hero;
+---
+
 <section id="hero" class="hero">
   <div class="container">
     <div class="hero-content">
       <div class="hero-text">
         <h1 class="hero-title">
-          <span class="greeting">hello, i'm</span>
-          <span class="name">barbara poblete</span>
+          <span class="greeting">{t.greeting}</span>
+          <span class="name">{t.name}</span>
         </h1>
         <p class="hero-description">
-          I’m passionate about creating clean, modern interfaces that feel effortless to use. While I’m still sharpening my skills, I love designing experiences that are both beautiful and functional. Simplicity, usability, and a touch of creativity, that’s what I aim for.
+          {t.description}
         </p>
         <div class="hero-cta">
         </div>
       </div>
-      
+
       <div class="hero-visual">
         <div class="hero-shape">
           <div class="particle-system" id="particle-canvas">
-            <div class="canvas-hint">Try drawing here!</div>
+            <div class="canvas-hint">{t.canvasHint}</div>
           </div>
         </div>
       </div>
     </div>
-    
+
     <div class="scroll-indicator">
       <a href="#about">
         <span class="mouse">
           <span class="wheel"></span>
         </span>
-        <span class="scroll-text">scroll down</span>
+        <span class="scroll-text">{t.scroll}</span>
       </a>
     </div>
   </div>

@@ -1,15 +1,26 @@
+---
+import { useTranslations, type Lang } from '../i18n/translations';
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = 'en' } = Astro.props;
+const t = useTranslations(lang).skills;
+---
+
 <section id="skills" class="section skills">
   <div class="container">
     <div class="section-header">
-      <h2 class="section-title">my skills</h2>
+      <h2 class="section-title">{t.title}</h2>
       <div class="section-line"></div>
     </div>
-    
+
     <div class="skills-container">
       <div class="skills-tabs">
-        <button class="tab-btn active" data-target="frontend"><span>frontend</span></button>
-        <button class="tab-btn" data-target="backend"><span>backend</span></button>
-        <button class="tab-btn" data-target="tools"><span>tools & others</span></button>
+        <button class="tab-btn active" data-target="frontend"><span>{t.tabs.frontend}</span></button>
+        <button class="tab-btn" data-target="backend"><span>{t.tabs.backend}</span></button>
+        <button class="tab-btn" data-target="tools"><span>{t.tabs.tools}</span></button>
       </div>
       
       <div class="skills-content">

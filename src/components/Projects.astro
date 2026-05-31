@@ -1,48 +1,15 @@
 ---
 // To add a real screenshot, drop the image in /public (e.g. /public/projects/interviewlab.png)
-// and set `image: '/projects/interviewlab.png'` on the matching project below.
-const projects = [
-  {
-    title: 'interviewlab',
-    description:
-      'An AI-powered mock interview platform with a conversational voice agent. It evaluates candidates with LLM-based analysis and AI speech, then generates structured feedback and analytics dashboards.',
-    tech: ['next.js', 'supabase', 'elevenlabs', 'gemini', 'tailwind'],
-    link: 'https://interview-lab-rho.vercel.app',
-    linkLabel: 'visit site',
-    icon: 'mic',
-    image: null,
-  },
-  {
-    title: 'docgen',
-    description:
-      'A document automation tool built for Poblete Martínez Abogados. It generates lawsuits and promissory notes in bulk from an Excel spreadsheet and a Word template, making the process faster and far less error-prone.',
-    tech: ['flask', 'python', 'docker', 'self-hosted'],
-    link: 'https://documentos.pobletemartinez.cl/',
-    linkLabel: 'visit site',
-    icon: 'file',
-    image: null,
-  },
-  {
-    title: 'macrotrack',
-    description:
-      'A macro and calorie tracker I built because no existing app did exactly what I needed to improve my own nutrition. Self-hosted on a personal server, deployed with Coolify and Pangolin.',
-    tech: ['django', 'vue', 'postgresql', 'coolify', 'self-hosted'],
-    link: 'https://macrotrack.bppm.dev/',
-    linkLabel: 'visit site',
-    icon: 'activity',
-    image: null,
-  },
-  {
-    title: 'poblete martínez',
-    description:
-      'The web presence for an independent law firm, including production web and backend tools that automate their legal workflows. Self-hosted alongside DocGen on a personal server.',
-    tech: ['astro', 'tailwind', 'flask', 'docker'],
-    link: 'https://pobletemartinez.cl',
-    linkLabel: 'visit site',
-    icon: 'scale',
-    image: null,
-  },
-];
+// and set `image: '/projects/interviewlab.png'` on the matching project in src/i18n/translations.ts.
+import { useTranslations, type Lang } from '../i18n/translations';
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = 'en' } = Astro.props;
+const t = useTranslations(lang).projects;
+const projects = t.items;
 
 const icons = {
   mic: '<path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line>',
@@ -55,7 +22,7 @@ const icons = {
 <section id="projects" class="section projects">
   <div class="container">
     <div class="section-header">
-      <h2 class="section-title">my projects</h2>
+      <h2 class="section-title">{t.title}</h2>
       <div class="section-line"></div>
     </div>
 
@@ -84,7 +51,7 @@ const icons = {
 
             {project.link && (
               <a class="project-link" href={project.link} target="_blank" rel="noopener noreferrer" aria-label={`Visit ${project.title}`}>
-                <span>{project.linkLabel}</span>
+                <span>{t.linkLabel}</span>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
               </a>
             )}

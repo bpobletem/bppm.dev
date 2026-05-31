@@ -1,5 +1,14 @@
 ---
 import SocialButton from './SocialButton.astro';
+import { useTranslations, type Lang } from '../i18n/translations';
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = 'en' } = Astro.props;
+const t = useTranslations(lang).footer;
+const homeHref = lang === 'es' ? '/es' : '/';
 ---
 
 <footer class="footer">
@@ -7,7 +16,7 @@ import SocialButton from './SocialButton.astro';
   <div class="container">
     <div class="footer-content">
       <div class="footer-logo">
-        <a href="/">bppm.dev</a>
+        <a href={homeHref}>bppm.dev</a>
       </div>
       
       <div class="footer-social">
@@ -29,7 +38,7 @@ import SocialButton from './SocialButton.astro';
     
     <div class="footer-bottom">
       <div class="footer-copyright">
-        <p>designed, developed & shipped by me</p>
+        <p>{t.credit}</p>
       </div>
     </div>
   </div>

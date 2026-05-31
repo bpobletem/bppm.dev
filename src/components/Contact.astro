@@ -1,20 +1,26 @@
 ---
 import SocialButton from './SocialButton.astro';
+import { useTranslations, type Lang } from '../i18n/translations';
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = 'en' } = Astro.props;
+const t = useTranslations(lang).contact;
 ---
 
 <section id="contact" class="section contact">
   <div class="container">
     <div class="section-header">
-      <h2 class="section-title">get in touch</h2>
+      <h2 class="section-title">{t.title}</h2>
       <div class="section-line"></div>
     </div>
-    
+
     <div class="contact-content">
       <div class="contact-info">
         <div class="contact-text">
-          <p>
-            I'm open to freelance projects and always excited about new opportunities! Whether you need a creative touch on a project, want to chat about a potential collaboration, or just feel like saying hello, don't hesitate to reach out!
-          </p>
+          <p>{t.text}</p>
         </div>
         
         <div class="contact-methods">
