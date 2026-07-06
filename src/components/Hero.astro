@@ -323,7 +323,6 @@ const t = useTranslations(lang).hero;
     margin-bottom: 1.5rem;
     display: flex;
     flex-direction: column;
-    text-transform: lowercase;
   }
   
   .greeting {
@@ -346,7 +345,6 @@ const t = useTranslations(lang).hero;
     color: var(--color-muted);
     margin-bottom: 1.5rem;
     font-weight: 500;
-    text-transform: lowercase;
   }
   
   .hero-description {
@@ -477,7 +475,6 @@ const t = useTranslations(lang).hero;
     font-size: 0.875rem;
     color: var(--color-muted);
     letter-spacing: 1px;
-    text-transform: lowercase;
   }
   
   @keyframes scroll {
@@ -525,13 +522,15 @@ const t = useTranslations(lang).hero;
     }
   }
   
+  @media (max-width: 1024px) {
+    .scroll-indicator {
+      display: none;
+    }
+  }
+
   @media (max-width: 768px) {
     .hero {
       padding-top: 80px;
-    }
-    
-    .scroll-indicator {
-      display: none;
     }
   }
   

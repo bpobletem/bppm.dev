@@ -26,73 +26,31 @@ const t = useTranslations(lang).skills;
       <div class="skills-content">
         <div class="skills-tab-content active" id="frontend">
           <div class="skills-grid">
-            <div class="skill-card">
-              <h4>html & css</h4>
-            </div>
-            
-            <div class="skill-card">
-              <h4>javascript</h4>
-            </div>
-            
-            <div class="skill-card">
-              <h4>vue</h4>
-            </div>
-            
-            <div class="skill-card">
-              <h4>typescript</h4>
-            </div>
-            
-            <div class="skill-card">
-              <h4>tailwind</h4>
-            </div>
-            
-            <div class="skill-card">
-              <h4>astro</h4>
-            </div>
+            {t.frontend.map((skill) => (
+              <div class="skill-card">
+                <h4>{skill}</h4>
+              </div>
+            ))}
           </div>
         </div>
-        
+
         <div class="skills-tab-content" id="backend">
           <div class="skills-grid">
-            <div class="skill-card">
-              <h4>node.js</h4>
-            </div>
-            
-            <div class="skill-card">
-              <h4>python</h4>
-            </div>
-
-            <div class="skill-card">
-              <h4>sql</h4>
-            </div>
-
-            <div class="skill-card">
-              <h4>pl/sql</h4>
-            </div>
+            {t.backend.map((skill) => (
+              <div class="skill-card">
+                <h4>{skill}</h4>
+              </div>
+            ))}
           </div>
         </div>
-        
+
         <div class="skills-tab-content" id="tools">
           <div class="skills-grid">
-            <div class="skill-card">
-              <h4>git & github</h4>
-            </div>
-            
-            <div class="skill-card">
-              <h4>ui/ux design</h4>
-            </div>
-            
-            <div class="skill-card">
-              <h4>figma</h4>
-            </div>
-
-            <div class="skill-card">
-              <h4>aws</h4>
-            </div>
-
-            <div class="skill-card">
-              <h4>servicenow</h4>
-            </div>
+            {t.tools.map((skill) => (
+              <div class="skill-card">
+                <h4>{skill}</h4>
+              </div>
+            ))}
           </div>
         </div>
       </div>
@@ -147,7 +105,6 @@ const t = useTranslations(lang).skills;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    text-transform: lowercase;
   }
   
   .section-line {
@@ -177,7 +134,6 @@ const t = useTranslations(lang).skills;
     color: var(--color-muted);
     cursor: pointer;
     transition: all 0.3s ease;
-    text-transform: lowercase;
   }
   
   .tab-btn span {
@@ -309,7 +265,6 @@ const t = useTranslations(lang).skills;
     font-size: 1.1rem;
     margin: 0;
     color: var(--color-text);
-    text-transform: lowercase;
     position: relative;
     z-index: 2;
   }
@@ -340,5 +295,4 @@ const t = useTranslations(lang).skills;
       grid-template-columns: repeat(2, 1fr);
     }
   }
-</style> 
-</style> 
+</style>

@@ -21,7 +21,6 @@ const homeHref = lang === 'es' ? '/es' : '/';
       <nav class="nav-desktop">
         <ul>
           <li><a href="#about">{t.nav.about}</a></li>
-          <li><a href="#experience">{t.nav.experience}</a></li>
           <li><a href="#skills">{t.nav.skills}</a></li>
           <li><a href="#projects">{t.nav.projects}</a></li>
           <li><a href="#contact">{t.nav.contact}</a></li>
@@ -45,7 +44,6 @@ const homeHref = lang === 'es' ? '/es' : '/';
     <nav>
       <ul>
         <li><a href="#about">{t.nav.about}</a></li>
-        <li><a href="#experience">{t.nav.experience}</a></li>
         <li><a href="#skills">{t.nav.skills}</a></li>
         <li><a href="#projects">{t.nav.projects}</a></li>
         <li><a href="#contact">{t.nav.contact}</a></li>
@@ -247,19 +245,21 @@ const homeHref = lang === 'es' ? '/es' : '/';
     color: var(--color-primary);
   }
   
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
     .nav-desktop {
       display: none;
     }
-    
+
     #mobile-menu-toggle {
       display: flex;
     }
-    
+
     .mobile-menu.active {
       display: block;
     }
-    
+  }
+
+  @media (max-width: 768px) {
     .header-content {
       height: 60px;
     }
