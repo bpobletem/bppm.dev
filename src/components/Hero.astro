@@ -17,6 +17,7 @@ const t = useTranslations(lang).hero;
           <span class="greeting">{t.greeting}</span>
           <span class="name">{t.name}</span>
         </h1>
+        <p class="hero-role">{t.role}</p>
         <p class="hero-description">
           {t.description}
         </p>
@@ -333,6 +334,7 @@ const t = useTranslations(lang).hero;
   }
   
   .name {
+    font-family: var(--font-serif);
     background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -340,11 +342,11 @@ const t = useTranslations(lang).hero;
     font-weight: 700;
   }
   
-  .hero-subtitle {
-    font-size: 1.5rem;
-    color: var(--color-muted);
-    margin-bottom: 1.5rem;
-    font-weight: 500;
+  .hero-role {
+    font-size: 1.25rem;
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+    font-weight: 400;
   }
   
   .hero-description {

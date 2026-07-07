@@ -12,9 +12,10 @@ export const translations = {
     },
     hero: {
       greeting: "Hi, I'm",
-      name: 'Barbara Poblete',
+      name: 'Bárbara Poblete',
+      role: 'Full-stack Developer',
       description:
-        "I build web products end-to-end: from backend APIs and databases to interfaces people actually enjoy using. I like owning things fully, from idea to a self-hosted deployment I maintain myself. Below are a few I've shipped.",
+        "I build web products end-to-end: from backend APIs and databases to interfaces. You can check out some of my projects below :)",
       canvasHint: 'Try drawing here!',
       scroll: 'Scroll down',
     },
@@ -144,9 +145,10 @@ export const translations = {
     },
     hero: {
       greeting: 'Hola, soy',
-      name: 'Barbara Poblete',
+      name: 'Bárbara Poblete',
+      role: 'Desarrolladora Full-stack',
       description:
-        'Construyo productos web de punta a punta: desde APIs y bases de datos hasta interfaces que la gente realmente disfruta usar. Me gusta hacerme cargo de un proyecto completo, desde la idea hasta un despliegue self-hosted que yo misma mantengo. Estos son algunos que ya lancé.',
+        'Construyo productos web de punta a punta: desde APIs y bases de datos hasta interfaces. Más abajo puedes ver algunos de mis proyectos :)',
       canvasHint: '¡Dibuja aquí!',
       scroll: 'Desplázate',
     },

@@ -15,10 +15,10 @@ const { lang = 'en' } = Astro.props;
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Barbara Poblete</title>
+		<title>Bárbara Poblete</title>
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Bitter:wght@600;700&display=swap" rel="stylesheet">
 	</head>
 	<body>
 		<div class="background-animation">
@@ -76,19 +76,20 @@ const { lang = 'en' } = Astro.props;
 <style is:global>
 	:root {
 		/* Light theme */
-		--color-bg: #ffffff;
-		--color-bg-rgb: 255, 255, 255;
+		--color-bg: #e9eaee;
+		--color-bg-rgb: 233, 234, 238;
 		--color-text: #1a1a1a;
 		--color-primary: #8b5cf6;
 		--color-primary-rgb: 139, 92, 246;
+		--color-primary-hover: #7c3aed;
 		--color-secondary: #a78bfa;
 		--color-accent: #ec4899;
 		--color-muted: #6b7280;
-		--color-border: #e5e7eb;
-		--color-card: #f9fafb;
-		--blob-color-1: rgba(139, 92, 246, 0.05);
-		--blob-color-2: rgba(236, 72, 153, 0.05);
-		--blob-color-3: rgba(59, 130, 246, 0.05);
+		--color-border: #d7d9df;
+		--color-card: #f4f5f7;
+		--blob-color-1: rgba(139, 92, 246, 0.06);
+		--blob-color-2: rgba(236, 72, 153, 0.06);
+		--blob-color-3: rgba(59, 130, 246, 0.06);
 	}
 
 	html.dark {
@@ -98,6 +99,7 @@ const { lang = 'en' } = Astro.props;
 		--color-text: #f3f4f6;
 		--color-primary: #8b5cf6;
 		--color-primary-rgb: 139, 92, 246;
+		--color-primary-hover: #7c3aed;
 		--color-secondary: #a78bfa;
 		--color-accent: #ec4899;
 		--color-muted: #9ca3af;
@@ -108,8 +110,13 @@ const { lang = 'en' } = Astro.props;
 		--blob-color-3: rgba(59, 130, 246, 0.1);
 	}
 
+	:root {
+		--font-sans: 'Inter', sans-serif;
+		--font-serif: 'Bitter', serif;
+	}
+
 	html {
-		font-family: 'Inter', sans-serif;
+		font-family: var(--font-sans);
 		background-color: var(--color-bg);
 		color: var(--color-text);
 		scroll-behavior: smooth;
@@ -247,8 +254,7 @@ const { lang = 'en' } = Astro.props;
 	}
 	
 	.btn-primary:hover {
-		transform: translateY(-2px);
-		box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+		background: var(--color-primary-hover);
 		color: white;
 	}
 	

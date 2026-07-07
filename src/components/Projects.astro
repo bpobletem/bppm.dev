@@ -97,6 +97,7 @@ const badgeIcons = {
   }
 
   .section-title {
+    font-family: var(--font-serif);
     font-size: 2.5rem;
     margin-bottom: 1rem;
     position: relative;
@@ -217,6 +218,7 @@ const badgeIcons = {
   }
 
   .project-title {
+    font-family: var(--font-serif);
     font-size: 1.4rem;
     margin-bottom: 0.75rem;
     color: var(--color-text);
@@ -286,13 +288,12 @@ const badgeIcons = {
     color: white;
     background: var(--color-primary);
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    transition: background-color 0.3s ease;
   }
 
   .project-link:hover {
     color: white;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+    background: var(--color-primary-hover);
   }
 
   @media (max-width: 768px) {
